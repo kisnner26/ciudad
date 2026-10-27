@@ -23,7 +23,8 @@ function drawBuilding(b, time) {
   poly([T(0, 0, 0), T(fp, 0, 0), T(fp, fp, 0), T(0, fp, 0)], 'rgba(0,0,0,.28)');           // sombra/base
   poly([T(0, fp, 0), T(fp, fp, 0), T(fp, fp, h), T(0, fp, h)], hsl(hue, sat, lum - 8 + (hot ? 8 : 0))); // cara izquierda
   poly([T(fp, 0, 0), T(fp, fp, 0), T(fp, fp, h), T(fp, 0, h)], hsl(hue, sat, lum + 4 + (hot ? 8 : 0)));  // cara derecha
-  poly([T(0, 0, h), T(fp, 0, h), T(fp, fp, h), T(0, fp, h)], hsl(hue, sat, lum + 16 + (hot ? 8 : 0)));   // techo
+  poly([T(0, 0, h), T(fp, 0, h), T(fp, fp, h), T(0, fp, h)], STATE_COLOR[b.state]);   // techo = estado
+  if (hot) poly([T(0, 0, h), T(fp, 0, h), T(fp, fp, h), T(0, fp, h)], 'rgba(255,255,255,.25)');
   // ventanas: cada una se enciende segun la actividad reciente
   const cols = Math.max(2, Math.round(fp * 3)), rows = Math.max(1, b.height);
   for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
